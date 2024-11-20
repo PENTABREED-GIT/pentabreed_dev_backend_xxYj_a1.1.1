@@ -1,0 +1,67 @@
+### 회원가입
+POST http://localhost:8080/user/join
+Content-Type: application/json
+
+{
+  "userId": "user1",
+  "userPassword": "1234",
+  "role": "ROLE_USER"
+}
+
+
+### 로그인
+POST http://localhost:8080/loginProc
+Content-Type: application/json
+
+{
+  "userId": "user1",
+  "userPassword": "1234"
+}
+
+### 중복 아이디 체크
+POST http://localhost:8080/user/id/check
+Content-Type: application/json
+
+{
+  "userId": "user1"
+}
+
+
+### token 으로 회원 정보 가져오기
+GET http://localhost:8080/api/user/me
+Accept: application/json
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZW50YSIsImlhdCI6MTczMjA1NTgzNCwiZXhwIjoxNzMyMDU1ODk0LCJ1c2VySWQiOiJ1c2VyMSIsInJvbGUiOiJST0xFX1VTRVIiLCJpc3MiOiJwZW50YSJ9.zJ4EB7luAHTHY2QKGfOaxw2Jn2BQN0vcpcyVDg-Zv210OJXEmjPx56jL-NCreaw6XWFgisHNR9Qu-89-DbuCkg
+
+
+
+### 토큰없이 테스트 -> JwtFilter 가 캐치하지 않는다 (/api/** 만 캐치)
+GET http://localhost:8080/anonymous
+Accept: application/json
+#Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZW50YSIsImlhdCI6MTczMTkwNzA0MCwiZXhwIjoxNzMxOTA3MTAwLCJpZCI6InVzZXIxIiwicm9sZSI6IlJPTEVfVVNFUiIsImlzcyI6InBlbnRhIn0.1qMoM3Fs6ljDFoGE_N9O1ki3bmKhVrDsSIk_eByZDWZMrNPYy7F2t6FO0agh2g2D-b1Pqy-tdBMSqH7jFGfQnQ
+
+
+
+### ROLE_USER Token 을 끼고 테스트 -> JwtFilter 가 캐치한다 -> AccessDeniedHandler 인가 핸들러 동작
+GET http://localhost:8080/api/anonymous
+Accept: application/json
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZW50YSIsImlhdCI6MTczMTk4Mzc1MywiZXhwIjoxNzMxOTgzODEzLCJ1c2VySWQiOiJ1c2VyMSIsInJvbGUiOiJST0xFX1VTRVIiLCJpc3MiOiJwZW50YSJ9.wrgoSU1gRlxEGzCbX_Fez-0URXPrpBe-UtUjrliecNNo7pv6scTeHjI_bsvDOWO5k-MyT73SJ5GF-woBixNorw
+
+
+
+
+
+### ADMIN 만 사용할 수 있는 api 호출
+GET http://localhost:8080/api/admin
+Accept: application/json
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZW50YSIsImlhdCI6MTczMjA1NTgzNCwiZXhwIjoxNzMyMDU1ODk0LCJ1c2VySWQiOiJ1c2VyMSIsInJvbGUiOiJST0xFX1VTRVIiLCJpc3MiOiJwZW50YSJ9.zJ4EB7luAHTHY2QKGfOaxw2Jn2BQN0vcpcyVDg-Zv210OJXEmjPx56jL-NCreaw6XWFgisHNR9Qu-89-DbuCkg
+
+
+
+
+### USER 또는 ADMIN  공통으로 사용할 수 있는 api 호출 (ANONYMOUS 은 호출 불가능)
+GET http://localhost:8080/api/auth/me
+Accept: application/json
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZW50YSIsImlhdCI6MTczMjA1NTgzNCwiZXhwIjoxNzMyMDU1ODk0LCJ1c2VySWQiOiJ1c2VyMSIsInJvbGUiOiJST0xFX1VTRVIiLCJpc3MiOiJwZW50YSJ9.zJ4EB7luAHTHY2QKGfOaxw2Jn2BQN0vcpcyVDg-Zv210OJXEmjPx56jL-NCreaw6XWFgisHNR9Qu-89-DbuCkg
+
+
+

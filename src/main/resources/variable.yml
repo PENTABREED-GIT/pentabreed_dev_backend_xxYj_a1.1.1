@@ -1,0 +1,31 @@
+# JWT 관련
+jwt:
+  secret:
+    # 토큰 비밀키 (128 바이트(1024 비트), 512 비트가 넘어야 sha512 알고리즘 사용함)
+    key: E54EE7E285FBB0275279143ABC4C554E5314E7B417ECAC83A5984A964FACBAAD68866A2841C3E83DDF125A2985566261C4014F9F960EC60253AEBCDA9513A9B4
+  token:
+    # 토큰 유효 시간 (분)
+    time: 1
+  refresh:
+    token:
+      # 리프래쉬 토큰 유효 시간 (분)
+      time: 10
+  # 토큰 만료시 메세지
+  expire: 토큰이 만료 되었습니다, 다시 로그인 해주세요
+
+# 메세지 관련
+msg:
+  title: 제목
+
+
+
+
+# 시큐리티 관련
+security:
+  exception:
+    auth: 인증 예외가 발생했습니다
+    deny: 허용되지 않는 접근 입니다
+
+
+
+

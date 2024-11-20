@@ -1,0 +1,61 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+  output:
+    ansi:
+      enabled: always
+
+
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/api_template
+      username: root
+      password: 1234
+      connection-timeout: 30000
+      pool-name: HikariCP
+      read-only: false
+      connection-test-query: SELECT 'PROD'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true  # JPQL ?? ??
+    open-in-view: false
+
+#logging.level:
+#  org.hibernate.sql: debug
+#  org.springframework.security: debug
+
+# SpringDoc 설정
+springdoc:
+  # API 문서 경로 설정
+  api-docs:
+    # API 문서의 JSON 형식 엔드포인트 경로를 '/api-docs'로 지정
+    path: /api-docs
+
+  # Swagger UI 설정
+  swagger-ui:
+    # Swagger UI의 HTML 페이지 경로를 '/swagger-ui.html'로 지정
+    # Swagger UI의 HTML 페이지 경로를 '/swagger-ui/index.html'로 지정
+#    path: /swagger-ui.html
+    path: /index.html
+    # API 작업(operations)을 알파벳 순으로 정렬
+    operations-sorter: alpha
+    # API 태그를 알파벳 순으로 정렬
+    tags-sorter: alpha
+    # Swagger UI의 기본 URL 비활성화 (petstore 예제 제거)
+    disable-swagger-default-url: true
