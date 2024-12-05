@@ -50,7 +50,7 @@ springdoc:
 
   # Swagger UI 설정
   swagger-ui:
-    ####### Swagger UI의 HTML 페이지 경로를 '/swagger-ui.html'로 지정
+    ### Swagger UI의 HTML 페이지 경로를 '/swagger-ui.html'로 지정
     # Swagger UI의 HTML 페이지 경로를 '/swagger-ui/index.html'로 지정
 #    path: /swagger-ui.html
     path: /index.html
